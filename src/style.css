@@ -81,9 +81,3 @@
 img {
     filter: invert(25%) sepia(9%) saturate(7427%) hue-rotate(66deg) brightness(92%) contrast(88%);
 }
-
-.unchecked {
-    width: 20px;
-    height: 20px;
-    border: 2px solid red;
-}

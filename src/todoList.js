@@ -10,15 +10,17 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
             img.src = svg;
             checkBox.appendChild(img);
             checkBox.style.border = "2px solid #26580F"
+            completionStatus = false;
         }
         else {
-            checkBox.classList.add('unchecked');
+            checkBox.style.border = "2px solid red"
             if(checkBox.firstChild){
                 checkBox.firstChild.remove();
             }
-      
+            completionStatus = true;
         }
     }
+
     const display = () => {
         const container = document.querySelector('.container');
         let box = document.createElement('div');
@@ -35,17 +37,22 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         let checkBox = document.createElement('div');
         checkBox.style.width = "20px";
         checkBox.style.height = "20px";
-        //Need to add a SVG to checkbox for its 2 states//
-        switchState(checkBox);
 
+        
+        switchState(checkBox);
+        checkBox.addEventListener('click', function() {
+            switchState(checkBox);
+        });
+        checkBox.style.cursor = "pointer";
         box.appendChild(checkBox);
+
         let text = document.createElement('div');
         text.textContent = title;
         text.style.paddingRight = "350px";
         box.appendChild(text);
         let date = document.createElement('div');
         date.textContent = dueDate;
-        date.style.color = "#BB9BB0";
+        date.style.color = "#A288A6";
         box.appendChild(date);
         container.appendChild(box);
         return box;
