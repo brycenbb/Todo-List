@@ -75,6 +75,7 @@
     border: 2px solid black;
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 img {

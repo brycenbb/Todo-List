@@ -33,6 +33,8 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
             box.style.borderLeft = "2px solid green";
         }
         let checkBox = document.createElement('div');
+        checkBox.style.width = "20px";
+        checkBox.style.height = "20px";
         //Need to add a SVG to checkbox for its 2 states//
         switchState(checkBox);
 
