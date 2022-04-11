@@ -1,5 +1,24 @@
+import svg from './check.svg';
+
 const todoItem = (title, description, dueDate, priority, completionStatus) => {
     console.log("gettging threre");
+
+    const switchState = (checkBox) => {
+        if(completionStatus) {
+            checkBox.classList.remove('unchecked');
+            let img = document.createElement('img');
+            img.src = svg;
+            checkBox.appendChild(img);
+            checkBox.style.border = "2px solid #26580F"
+        }
+        else {
+            checkBox.classList.add('unchecked');
+            if(checkBox.firstChild){
+                checkBox.firstChild.remove();
+            }
+      
+        }
+    }
     const display = () => {
         const container = document.querySelector('.container');
         let box = document.createElement('div');
@@ -15,12 +34,8 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         }
         let checkBox = document.createElement('div');
         //Need to add a SVG to checkbox for its 2 states//
-        if(completionStatus) {
-            checkBox.style
-        }
-        else {
+        switchState(checkBox);
 
-        }
         box.appendChild(checkBox);
         let text = document.createElement('div');
         text.textContent = title;
