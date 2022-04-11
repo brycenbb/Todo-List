@@ -1,0 +1,73 @@
+#colors {
+    color: 
+    #1C1D21
+    #A288A6
+    #BB9BB0
+    #CCBCBC
+    #F1E3E4
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.accent {
+    background-color: #CCBCBC;
+}
+
+.primary {
+    background-color: #F1E3E4;
+}
+
+.taskbar {
+    padding: 50px 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.taskbarItem {
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 10px;
+    transition: all 100ms ease-in-out;
+}
+
+.listItem {
+    width: 75%;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.projectList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.projectList > div {
+    font-weight: normal;
+    font-size: 1.5rem;
+    padding: 5px 0 5px 20px;
+    margin-left: 10px;
+}
+
+.projectList > div:hover {
+    background: #CCBC;
+    cursor: pointer;
+}
+
+.container {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
