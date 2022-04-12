@@ -4,6 +4,21 @@ import './style.css';
 let home = () => {
     const content = document.getElementById('content');
 
+    //Button to make a new list item, in the top right corner
+    let newItemButton = document.createElement('button');
+    newItemButton.type = "button";
+    newItemButton.textContent = "+";
+    // newItemButton.style.zIndex = "2";
+    newItemButton.classList.add('newListItemButton');
+    content.appendChild(newItemButton);
+
+    //Form to take in new items, attached to content div but sits under it usually.
+    let newForm = document.createElement('form');
+    newForm.id = "form";
+    newForm.classList.add('newItemForm');
+    // newForm.classList.add('clicked');
+    content.appendChild(newForm);
+
     let taskbar = document.createElement('div');
     taskbar.classList.add('taskbar');
 
@@ -36,6 +51,8 @@ let home = () => {
     projectsNew.style.marginLeft = "4px";
     projectsNew.style.fontSize = "0.8rem";
     projectsNew.style.display = "block";
+    projectsNew.style.cursor = "pointer";
+
     projectsNew.type = "button";
     projectsNew.textContent = "+";
     projectsNew.id = "newList";

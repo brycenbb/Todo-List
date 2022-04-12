@@ -24,6 +24,10 @@ let eventSetup = () => {
 
         }
     });
+    //New item functionality. Creates a todoItem and adds it to the current project. Uses modal
+    document.querySelector('.newListItemButton').addEventListener('click', function() {
+        document.getElementById('form').classList.add('clicked');
+    });
 
     //New List functionality. Creates a div with a name, adds it to listArray, makes a new todoList
     document.getElementById('newList').addEventListener('click', function() {
