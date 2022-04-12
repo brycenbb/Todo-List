@@ -49,14 +49,17 @@
     gap: 15px;
 }
 
-.projectList > div {
+.projectList > :first-child {
+    align-items: center;
+}
+.projectList > :nth-child(n+2) {
     font-weight: normal;
     font-size: 1.5rem;
     padding: 5px 0 5px 20px;
     margin-left: 10px;
 }
 
-.projectList > div:hover {
+.projectList > :nth-child(n+2):hover {
     background: #CCBC;
     cursor: pointer;
 }
@@ -84,4 +87,9 @@ img {
 
 .crossout  {
     opacity: 0.5;
+}
+
+.listHeader {
+    display: flex;
+    flex-direction: row;
 }

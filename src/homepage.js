@@ -23,7 +23,24 @@ let home = () => {
 
 
     let projects = document.createElement('div');
-    projects.textContent = "Projects";
+    projects.id = "projects";
+    let projectsHeader = document.createElement('div');
+    projectsHeader.classList.add('listHeader');
+    projectsHeader.textContent = "Projects";
+    projects.appendChild(projectsHeader);
+
+    let projectsNew = document.createElement('button');
+    projectsNew.style.width = "fit-content";
+    projectsNew.style.height = "fit-content";
+    projectsNew.style.padding = "0 2px";
+    projectsNew.style.marginLeft = "4px";
+    projectsNew.style.fontSize = "0.8rem";
+    projectsNew.style.display = "block";
+    projectsNew.type = "button";
+    projectsNew.textContent = "+";
+    projectsNew.id = "newList";
+    projectsHeader.appendChild(projectsNew);
+
     projects.classList.add('taskbarItem')
     projects.classList.add('projectList')
 
@@ -44,16 +61,14 @@ let home = () => {
     content.appendChild(taskbar);
     content.appendChild(container);
 
-    //Default setting load
-    let defaultProjectItem = document.createElement('div');
-    defaultProjectItem.classList.add("listItem");
+    //Default list load
 
     let defaultProject = document.createElement('div');
+    defaultProject.id = "0";
     defaultProject.textContent = "Default";
 
     let projectDiv = document.querySelector('.projectList');
     projectDiv.appendChild(defaultProject);
-    container.appendChild(defaultProjectItem);
 
     eventSetup();
 }
