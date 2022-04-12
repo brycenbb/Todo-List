@@ -3,6 +3,19 @@ import svg from './check.svg';
 const todoItem = (title, description, dueDate, priority, completionStatus) => {
     console.log("gettging threre");
 
+   const priorityColor = () => {
+        if(priority === "high"){
+            return "2px solid red";
+        }
+        else if(priority === "medium") {
+            return "2px solid orange";
+        }
+        else {
+            return "2px solid green";
+        }
+   }
+   
+   
     const switchState = (checkBox) => {
         if(completionStatus) {
             checkBox.classList.remove('unchecked');
@@ -11,13 +24,18 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
             checkBox.appendChild(img);
             checkBox.style.border = "2px solid #26580F"
             completionStatus = false;
+            checkBox.parentNode.classList.add('crossout');
+            checkBox.parentNode.style.borderLeft = "2px solid black";
         }
         else {
             checkBox.style.border = "2px solid red"
             if(checkBox.firstChild){
                 checkBox.firstChild.remove();
             }
+            checkBox.parentNode.classList.remove('crossout');
             completionStatus = true;
+            checkBox.parentNode.style.borderLeft = priorityColor();
+
         }
     }
 
@@ -25,26 +43,18 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         const container = document.querySelector('.container');
         let box = document.createElement('div');
         box.classList.add('listItem');
-        if(priority === "high"){
-            box.style.borderLeft = "2px solid red";
-        }
-        else if(priority === "medium") {
-            box.style.borderLeft = "2px solid yellow";
-        }
-        else {
-            box.style.borderLeft = "2px solid green";
-        }
+        box.style.borderLeft = priorityColor();
+ 
         let checkBox = document.createElement('div');
         checkBox.style.width = "20px";
         checkBox.style.height = "20px";
 
-        
+        box.appendChild(checkBox);
         switchState(checkBox);
         checkBox.addEventListener('click', function() {
             switchState(checkBox);
         });
         checkBox.style.cursor = "pointer";
-        box.appendChild(checkBox);
 
         let text = document.createElement('div');
         text.textContent = title;
