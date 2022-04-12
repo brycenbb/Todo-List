@@ -58,8 +58,13 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
 
         let text = document.createElement('div');
         text.textContent = title;
+        //This is a note about aligning the various components inside each listItem
+        //As different text lengths change the alignment, maxWidth is not helping
+        //By itself.
+        text.style.maxWidth = "500px";
         text.style.paddingRight = "350px";
         box.appendChild(text);
+        text.parentNode.style.overflowX = "scroll";
         let date = document.createElement('div');
         date.textContent = dueDate;
         date.style.color = "#A288A6";
@@ -71,14 +76,28 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
 }
 
 const todoList = () => {
+    console.log('really getting there');
     const itemArray = [];
 
     const addItem = (item) => {
         itemArray.push(item);
-        restructure(itemArray);
-    }
+        //Need to implement some sort of sorting of list items
+        // restructure(itemArray);
+    };
 
-    return {addItem};
+    const removeItem = (item) => {
+        itemArray.splice(itemArray.indexOf(item),1);
+    };
+
+    const loadList = () => {
+        itemArray.forEach(element => {
+            element.display();
+        });
+    };
+
+    return {addItem,removeItem,loadList};
 }
 
-export default todoItem;
+export {todoItem, todoList};
+// export function todoList();
+// export function todoItem();
