@@ -41,6 +41,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
 
     const display = () => {
         const container = document.querySelector('.container');
+
         let box = document.createElement('div');
         box.classList.add('listItem');
         box.style.borderLeft = priorityColor();
@@ -95,7 +96,15 @@ const todoList = () => {
         });
     };
 
-    return {addItem,removeItem,loadList};
+    const clearDisplay = () => {
+        const container = document.querySelector('.container');
+        let child = container.firstChild;
+        while(child) {
+            child.remove();
+            child = container.firstChild;
+        }
+    };
+    return {addItem,removeItem,loadList,clearDisplay};
 }
 
 export {todoItem, todoList};

@@ -6,7 +6,7 @@ let eventSetup = () => {
     // projectDiv.childNodes.forEach(node => {
     //     node.addEventListener('click', display)
     // });
-
+    let lastLoaded = null;
     console.log('to be completed');
     const listArray = [];
     let testList = todoList();
@@ -17,7 +17,12 @@ let eventSetup = () => {
     testList.addItem(test2);
 
     document.getElementById('0').addEventListener('click',function() {
-        listArray['0'].loadList();
+        if(lastLoaded != '0'){
+            listArray['0'].clearDisplay();
+            listArray['0'].loadList();
+            lastLoaded = '0';
+
+        }
     });
 
     //New List functionality. Creates a div with a name, adds it to listArray, makes a new todoList
@@ -29,6 +34,13 @@ let eventSetup = () => {
         let listToAdd = todoList();
         listArray.push(listToAdd);
         listArray[listArray.length - 1].loadList();
+        newList.addEventListener('click', function() {
+            if(lastLoaded != newList.id){
+                listArray[listArray.length - 1].clearDisplay();
+                listArray[listArray.length - 1].loadList();
+                lastLoaded = newList.id;
+            }
+        })
     });
 }
 
