@@ -51,7 +51,30 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         checkBox.style.height = "20px";
 
         box.appendChild(checkBox);
-        switchState(checkBox);
+        // switchState(checkBox);
+        //instead of calling switchstate here, i should manually make the box
+        //this fixes the bug of switching lists causing the boxes to switch
+        if(completionStatus) {
+            checkBox.classList.remove('unchecked');
+            let img = document.createElement('img');
+            img.src = svg;
+            checkBox.appendChild(img);
+            checkBox.style.border = "2px solid #26580F"
+            completionStatus = false;
+            checkBox.parentNode.classList.add('crossout');
+            checkBox.parentNode.style.borderLeft = "2px solid black";
+        }
+        else {
+            checkBox.style.border = "2px solid red"
+            if(checkBox.firstChild){
+                checkBox.firstChild.remove();
+            }
+            checkBox.parentNode.classList.remove('crossout');
+            completionStatus = true;
+            checkBox.parentNode.style.borderLeft = priorityColor();
+
+        }
+
         checkBox.addEventListener('click', function() {
             switchState(checkBox);
         });
@@ -59,6 +82,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
 
         let text = document.createElement('div');
         text.textContent = title;
+
         //This is a note about aligning the various components inside each listItem
         //As different text lengths change the alignment, maxWidth is not helping
         //By itself.

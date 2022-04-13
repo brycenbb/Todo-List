@@ -1,5 +1,4 @@
 import {todoList,todoItem} from "./todoList";
-// import todoItem from "./todoList";
 
 let eventSetup = () => {
     function formSubmitted() {
@@ -15,7 +14,6 @@ let eventSetup = () => {
     };
 
     let lastLoaded = null;
-    // console.log('to be completed');
     const listArray = [];
     let testList = todoList();
     listArray.push(testList);
@@ -23,6 +21,8 @@ let eventSetup = () => {
     let test2 = todoItem("This is also a test item", "not implemented yet","Dec 12","medium",true);
     testList.addItem(test);
     testList.addItem(test2);
+    listArray[0].loadList();
+    lastLoaded = 0;
 
     document.getElementById('0').addEventListener('click',function() {
         if(lastLoaded != Number('0')){
@@ -32,6 +32,8 @@ let eventSetup = () => {
             console.log('default list loaded');
         }
     });
+
+
     //New item functionality. Creates a todoItem and adds it to the current project. Uses modal
     document.querySelector('.newListItemButton').addEventListener('click', function() {
         document.getElementById('form').classList.add('clicked');
