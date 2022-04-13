@@ -4,10 +4,18 @@ import {todoList,todoItem} from "./todoList";
 let eventSetup = () => {
     function formSubmitted() {
         console.log("form submitted successfully");
+        let inputs = document.getElementById("form").elements;
+        console.log(inputs);
+        let item = todoItem(inputs[0].value,inputs[1].value,inputs[2].value,inputs[3].value, false);
+        console.log(lastLoaded);
+        console.log(listArray);
+        console.log(listArray[lastLoaded])
+        listArray[lastLoaded].addItem(item);
+        item.display();
     };
 
     let lastLoaded = null;
-    console.log('to be completed');
+    // console.log('to be completed');
     const listArray = [];
     let testList = todoList();
     listArray.push(testList);
@@ -17,11 +25,11 @@ let eventSetup = () => {
     testList.addItem(test2);
 
     document.getElementById('0').addEventListener('click',function() {
-        if(lastLoaded != '0'){
-            listArray['0'].clearDisplay();
-            listArray['0'].loadList();
-            lastLoaded = '0';
-
+        if(lastLoaded != Number('0')){
+            listArray[Number('0')].clearDisplay();
+            listArray[Number('0')].loadList();
+            lastLoaded = Number('0');
+            console.log('default list loaded');
         }
     });
     //New item functionality. Creates a todoItem and adds it to the current project. Uses modal
@@ -33,6 +41,7 @@ let eventSetup = () => {
     document.getElementById('form').addEventListener('submit', function(event){
         event.preventDefault();
         event.stopPropagation();
+        document.querySelector('.newItemForm').classList.remove('clicked');
         formSubmitted();
     });
 

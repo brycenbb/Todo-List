@@ -1,13 +1,13 @@
 import svg from './check.svg';
 
 const todoItem = (title, description, dueDate, priority, completionStatus) => {
-    console.log("gettging threre");
 
    const priorityColor = () => {
+       console.log(priority);
         if(priority === "high"){
             return "2px solid red";
         }
-        else if(priority === "medium") {
+        else if(priority === "med") {
             return "2px solid orange";
         }
         else {
@@ -73,11 +73,12 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         container.appendChild(box);
         return box;
     }
+    console.log("Item created");
+
     return {display};
 }
 
 const todoList = () => {
-    console.log('really getting there');
     const itemArray = [];
 
     const addItem = (item) => {
@@ -104,6 +105,8 @@ const todoList = () => {
             child = container.firstChild;
         }
     };
+    console.log('List created');
+
     return {addItem,removeItem,loadList,clearDisplay};
 }
 

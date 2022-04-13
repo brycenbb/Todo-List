@@ -48,6 +48,7 @@ let home = () => {
     dateDiv.textContent = "Due Date:  ";
     dateDiv.style.fontWeight = "bold";
     let date =  document.createElement('input');
+    date.required = true;
     date.type = "date";
     date.id = "date";
     dateDiv.appendChild(date);
@@ -60,6 +61,7 @@ let home = () => {
     let prioLow = document.createElement('div');
     let prioLowInput = document.createElement('input');
     prioLowInput.type = "radio";
+    prioLowInput.required = true;
     prioLowInput.id = "low";
     prioLowInput.value = "low";
     prioLowInput.name = "prio";
@@ -102,21 +104,16 @@ let home = () => {
     let submit = document.createElement('button');
     submit.textContent = "Add Event";
     submit.classList.add('submitButton');
-    submit.onclick = function() {
-        document.querySelector('.newItemForm').classList.remove('clicked')};
     formBody.appendChild(submit);
 
-    
-
-
-
-
     newForm.appendChild(formBody);
+
+
+    //Populating taskbar
 
     let taskbar = document.createElement('div');
     taskbar.classList.add('taskbar');
 
-    //Populating taskbar
     let today = document.createElement('div');
     today.textContent = "Today";
     today.classList.add('taskbarItem')
