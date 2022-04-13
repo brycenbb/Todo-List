@@ -43,6 +43,73 @@ let home = () => {
     descriptionInput.style.resize = "none";
     formBody.appendChild(descriptionInput);
     
+    let dateDiv = document.createElement('div');
+    dateDiv.classList.add('dueDateDiv');
+    dateDiv.textContent = "Due Date:  ";
+    dateDiv.style.fontWeight = "bold";
+    let date =  document.createElement('input');
+    date.type = "date";
+    date.id = "date";
+    dateDiv.appendChild(date);
+    formBody.appendChild(dateDiv);
+
+
+    let prioDiv = document.createElement('div');
+    prioDiv.classList.add('prioDiv');
+    prioDiv.textContent = "Priority: ";
+    let prioLow = document.createElement('div');
+    let prioLowInput = document.createElement('input');
+    prioLowInput.type = "radio";
+    prioLowInput.id = "low";
+    prioLowInput.value = "low";
+    prioLowInput.name = "prio";
+    let prioLowLabel = document.createElement('label');
+    prioLowLabel.htmlFor = "low";
+    prioLowLabel.textContent = 'Low';
+    prioLow.appendChild(prioLowInput);
+    prioLow.appendChild(prioLowLabel);
+    prioDiv.appendChild(prioLow);
+    
+    let prioMed = document.createElement('div');
+    let prioMedInput = document.createElement('input');
+    prioMedInput.type = "radio";
+    prioMedInput.id = "med";
+    prioMedInput.value = "med";
+    prioMedInput.name = "prio";
+    let prioMedLabel = document.createElement('label');
+    prioMedLabel.htmlFor = "med";
+    prioMedLabel.textContent = 'Med';
+    prioMed.appendChild(prioMedInput);
+    prioMed.appendChild(prioMedLabel);
+    prioDiv.appendChild(prioMed);
+
+    let prioHigh = document.createElement('div');
+    let prioHighInput = document.createElement('input');
+    prioHighInput.type = "radio";
+    prioHighInput.id = "high";
+    prioHighInput.value = "high";
+    prioHighInput.name = "prio";
+    let prioHighLabel = document.createElement('label');
+    prioLowLabel.htmlFor = "high";
+    prioHighLabel.textContent = 'High';
+    prioHigh.appendChild(prioHighInput);
+    prioHigh.appendChild(prioHighLabel);
+    prioDiv.appendChild(prioHigh);
+
+    formBody.appendChild(prioDiv);
+
+
+    let submit = document.createElement('button');
+    submit.textContent = "Add Event";
+    submit.classList.add('submitButton');
+    submit.onclick = function() {
+        document.querySelector('.newItemForm').classList.remove('clicked')};
+    formBody.appendChild(submit);
+
+    
+
+
+
 
     newForm.appendChild(formBody);
 

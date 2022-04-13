@@ -110,7 +110,7 @@ img {
 
 .newItemForm {
     width: 50vw;
-    height: 80vh;
+    height: 60vh;
     border: 1px solid black;  
     margin-left: 150px;
     visibility: hidden;
@@ -128,13 +128,14 @@ img {
 
 .formHeader {
     width:100%;
-    height:8%;
+    height:12%;
     background-color:#CCBCBC;
     display:flex;
     align-items:center;
     font-weight: bold;
     font-size: 1.5rem;
     padding-left: 10px;
+    /* padding-top: 30px; */
 }
 
 .formBody {
@@ -151,3 +152,35 @@ img {
     outline: none;
 }
 
+
+.dueDateDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.prioDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.prioDiv > div {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.prioDiv > div > input {
+    padding: 10px;
+}
+
+.submitButton {
+    width: 30%;
+    padding: 10px 10px 10px 10px;
+    font-size: 2rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
