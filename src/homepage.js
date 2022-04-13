@@ -45,12 +45,13 @@ let home = () => {
     
     let dateDiv = document.createElement('div');
     dateDiv.classList.add('dueDateDiv');
-    dateDiv.textContent = "Due Date:  ";
+    dateDiv.textContent = "Due Date:";
     dateDiv.style.fontWeight = "bold";
     let date =  document.createElement('input');
     date.required = true;
     date.type = "date";
     date.id = "date";
+    date.valueAsDate = new Date();
     dateDiv.appendChild(date);
     formBody.appendChild(dateDiv);
 

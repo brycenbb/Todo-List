@@ -156,6 +156,7 @@ img {
 .dueDateDiv {
     display: flex;
     flex-direction: row;
+    gap: 5px;
 }
 
 .prioDiv {
