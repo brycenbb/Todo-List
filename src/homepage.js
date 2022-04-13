@@ -16,8 +16,35 @@ let home = () => {
     let newForm = document.createElement('form');
     newForm.id = "form";
     newForm.classList.add('newItemForm');
-    // newForm.classList.add('clicked');
     content.appendChild(newForm);
+
+    //Populating form
+    let header = document.createElement('div');
+    header.textContent = "Create a new event:";
+    header.classList.add('formHeader');
+    newForm.appendChild(header);    
+
+    let formBody = document.createElement('div');
+    formBody.classList.add('formBody');
+
+    let titleInput = document.createElement('input');
+    titleInput.type = "text";
+    titleInput.id = "title";
+    titleInput.required = true;
+    titleInput.placeholder = "Event title";
+    titleInput.maxLength = "40";
+    formBody.appendChild(titleInput);
+
+    let descriptionInput = document.createElement('textarea');
+    descriptionInput.id = "description";
+    descriptionInput.required = true;
+    descriptionInput.placeholder = "Event description";
+    descriptionInput.rows = "3";
+    descriptionInput.style.resize = "none";
+    formBody.appendChild(descriptionInput);
+    
+
+    newForm.appendChild(formBody);
 
     let taskbar = document.createElement('div');
     taskbar.classList.add('taskbar');

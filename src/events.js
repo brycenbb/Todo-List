@@ -2,10 +2,10 @@ import {todoList,todoItem} from "./todoList";
 // import todoItem from "./todoList";
 
 let eventSetup = () => {
-    // let projectDiv = document.querySelector('.projectList');
-    // projectDiv.childNodes.forEach(node => {
-    //     node.addEventListener('click', display)
-    // });
+    function formSubmitted() {
+        console.log("form submitted successfully");
+    };
+
     let lastLoaded = null;
     console.log('to be completed');
     const listArray = [];
@@ -27,6 +27,13 @@ let eventSetup = () => {
     //New item functionality. Creates a todoItem and adds it to the current project. Uses modal
     document.querySelector('.newListItemButton').addEventListener('click', function() {
         document.getElementById('form').classList.add('clicked');
+    });
+
+    //Form submission default action override
+    document.getElementById('form').addEventListener('submit', function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        formSubmitted();
     });
 
     //New List functionality. Creates a div with a name, adds it to listArray, makes a new todoList
