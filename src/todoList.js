@@ -1,7 +1,7 @@
 import svg from './check.svg';
 
 const todoItem = (title, description, dueDate, priority, completionStatus) => {
-
+    let initialLoad = true;
    const priorityColor = () => {
        console.log(priority);
         if(priority === "high"){
@@ -51,28 +51,10 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         checkBox.style.height = "20px";
 
         box.appendChild(checkBox);
-        // switchState(checkBox);
-        //instead of calling switchstate here, i should manually make the box
-        //this fixes the bug of switching lists causing the boxes to switch
-        if(completionStatus) {
-            checkBox.classList.remove('unchecked');
-            let img = document.createElement('img');
-            img.src = svg;
-            checkBox.appendChild(img);
-            checkBox.style.border = "2px solid #26580F"
-            completionStatus = false;
-            checkBox.parentNode.classList.add('crossout');
-            checkBox.parentNode.style.borderLeft = "2px solid black";
-        }
-        else {
-            checkBox.style.border = "2px solid red"
-            if(checkBox.firstChild){
-                checkBox.firstChild.remove();
-            }
-            checkBox.parentNode.classList.remove('crossout');
-            completionStatus = true;
-            checkBox.parentNode.style.borderLeft = priorityColor();
-
+        //BUG HERE: If another list is loaded, the box and box colors are not loaded correctly
+        if(initialLoad) {
+            switchState(checkBox);
+            initialLoad = false;
         }
 
         checkBox.addEventListener('click', function() {
@@ -91,6 +73,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         box.appendChild(text);
         text.parentNode.style.overflowX = "scroll";
         let date = document.createElement('div');
+        date.classList.add('dateDisplayDiv');
         date.textContent = dueDate;
         date.style.color = "#A288A6";
         box.appendChild(date);
