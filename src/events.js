@@ -6,7 +6,7 @@ let eventSetup = () => {
         console.log("form submitted successfully");
         let inputs = document.getElementById("form").elements;
         console.log(inputs);
-        let item = todoItem(inputs[0].value,inputs[1].value,inputs[2].value,inputs[3].value, false);
+        let item = todoItem(inputs[0].value,inputs[1].value,inputs[2].value,document.querySelector('input[name="prio"]:checked').value, false);
         console.log(lastLoaded);
         console.log(listArray);
         console.log(listArray[lastLoaded])
