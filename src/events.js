@@ -5,7 +5,24 @@ let eventSetup = () => {
         console.log("form submitted successfully");
         let inputs = document.getElementById("form").elements;
         console.log(inputs);
-        let item = todoItem(inputs[0].value,inputs[1].value,inputs[2].value,document.querySelector('input[name="prio"]:checked').value, false);
+        let month = Number(inputs[2].value.slice(5,7) - 1);
+        let day = inputs[2].value.slice(8);
+        let months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+            ];
+        let convertedDate = months[month].slice(0,3) + " " + day;
+        let item = todoItem(inputs[0].value,inputs[1].value,convertedDate,document.querySelector('input[name="prio"]:checked').value, false);
         console.log(lastLoaded);
         console.log(listArray);
         console.log(listArray[lastLoaded])
