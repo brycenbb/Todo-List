@@ -30,12 +30,12 @@ let eventSetup = () => {
     let testList = todoList();
     listArray.push(testList);
     let test = todoItem("This is a test item", "not implemented yet","Dec 12","high",false);
-    let test2 = todoItem("This is also a test item", "not implemented yet","Dec 12","medium",true);
     testList.addItem(test);
+    let test2 = todoItem("This is also a test item", "not implemented yet","Dec 12","medium",true);
     testList.addItem(test2);
     listArray[0].loadList();
     lastLoaded = 0;
-
+ 
     document.getElementById('0').addEventListener('click',function() {
         if(lastLoaded != Number('0')){
             listArray[Number('0')].clearDisplay();
@@ -85,18 +85,36 @@ let eventSetup = () => {
     //     listArray[lastLoaded].removeItem(document.getElementById('test').parentNode);
     // });
 
+    //Bug here: .array() is a function that just consolelogs the todoList to see its items.
+    //The problem is that somehwere between the foreach loop and the event listener one of 
+    //the objects is lost in memory. This can be tested by clicking the delete button.
+    //UPDATE: the issue is that i am passing in the div object to the array, when the array
+    //has todoItem objects. I need to get the todoItem object related to the overall div!
     let listItems = document.querySelectorAll('.listItem');
-    listItems.forEach(element => {
+    for(let i=0; i<listItems.length;i++) {
         console.log('loading');
-        listArray[lastLoaded].array();
+        // console.log(listItems[i]);
+        // console.log(listArray[lastLoaded]);
+        // listArray[lastLoaded].array();
         // console.log(element.lastChild);
         // console.log(element);
-        element.lastChild.addEventListener('click', function(){
+        listItems[i].lastChild.addEventListener('click', function(){
             console.log('deleting');
             listArray[lastLoaded].array();
-            listArray[lastLoaded].removeItem(element);
-        });
-    });
+            listArray[lastLoaded].removeItem(i);
+        }); 
+    }
+    // listItems.forEach(element => {
+    //     console.log('loading');
+    //     listArray[lastLoaded].array();
+    //     // console.log(element.lastChild);
+    //     // console.log(element);
+    //     element.lastChild.addEventListener('click', function(){
+    //         console.log('deleting');
+    //         listArray[lastLoaded].array();
+    //         listArray[lastLoaded].removeItem(element.lastChild.parentNode);
+    //     });
+    // });
 }
 
 export default eventSetup;

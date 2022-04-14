@@ -42,7 +42,6 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         let box = document.createElement('div');
         box.classList.add('listItem');
         box.style.borderLeft = priorityColor();
- 
         let checkBox = document.createElement('div');
         checkBox.style.width = "20px";
         checkBox.style.height = "20px";
@@ -75,9 +74,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         let text = document.createElement('div');
         text.textContent = title;
 
-        //This is a note about aligning the various components inside each listItem
-        //As different text lengths change the alignment, maxWidth is not helping
-        //By itself.
+
         text.style.maxWidth = "500px";
         // text.style.paddingRight = "350px";
         box.appendChild(text);
@@ -90,7 +87,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         //delete functionality button
         let deleteButton = document.createElement('button');
         deleteButton.type = "button";
-        deleteButton.id ='test';
+        deleteButton.classList.add('test');
         deleteButton.textContent="X";
         deleteButton.style.opacity="100%";
         box.appendChild(deleteButton);
@@ -116,10 +113,15 @@ const todoList = () => {
         // restructure(itemArray);
     };
 
-    const removeItem = (item) => {
-        console.log(itemArray);
-        console.log(itemArray.indexOf(item));
-        itemArray = itemArray.splice(itemArray.indexOf(item),1);
+    const removeItem = (index) => {
+        console.log('inside remove');
+        console.log(itemArray[index]);
+        // console.log('index is:');
+        // console.log(itemArray.indexOf(itemArray[index]));
+        // console.log('object is:');
+        // console.log(index);
+        itemArray.splice(index,1);
+        // itemArray = itemArray.splice(itemArray.indexOf(item),1);
         clearDisplay();
         loadList();
     };

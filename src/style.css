@@ -197,7 +197,7 @@ img {
     height: 20px;
 }
 
-#test{
+.test{
     width: 20px;
     height: 20px;
     border: 2px solid black;
@@ -207,7 +207,7 @@ img {
     z-index: 2;
 }
 
-#test:hover {
+.test:hover {
     cursor: pointer;
     filter:brightness(120%);
 }
