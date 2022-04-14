@@ -2,9 +2,7 @@ import {todoList,todoItem} from "./todoList";
 
 let eventSetup = () => {
     function formSubmitted() {
-        console.log("form submitted successfully");
         let inputs = document.getElementById("form").elements;
-        console.log(inputs);
         let month = Number(inputs[2].value.slice(5,7) - 1);
         let day = inputs[2].value.slice(8);
         let months = [
@@ -23,9 +21,6 @@ let eventSetup = () => {
             ];
         let convertedDate = months[month].slice(0,3) + " " + day;
         let item = todoItem(inputs[0].value,inputs[1].value,convertedDate,document.querySelector('input[name="prio"]:checked').value, false);
-        console.log(lastLoaded);
-        console.log(listArray);
-        console.log(listArray[lastLoaded])
         listArray[lastLoaded].addItem(item);
         item.display();
     };
@@ -82,10 +77,26 @@ let eventSetup = () => {
         })
     });
 
-    //deleting list item functionality
-    document.getElementById('test').addEventListener('click', function() {
-        document.getElementById('test').parentNode;
-    })
+    //deleting list item functionality. Should do :lastchild instead of ID, using ID
+    //makes it only apply to one item
+    // document.getElementById('test').addEventListener('click', function() {
+    //     console.log('deleting....');
+    //     console.log(listArray[lastLoaded]);
+    //     listArray[lastLoaded].removeItem(document.getElementById('test').parentNode);
+    // });
+
+    let listItems = document.querySelectorAll('.listItem');
+    listItems.forEach(element => {
+        console.log('loading');
+        listArray[lastLoaded].array();
+        // console.log(element.lastChild);
+        // console.log(element);
+        element.lastChild.addEventListener('click', function(){
+            console.log('deleting');
+            listArray[lastLoaded].array();
+            listArray[lastLoaded].removeItem(element);
+        });
+    });
 }
 
 export default eventSetup;

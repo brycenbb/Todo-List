@@ -4,7 +4,6 @@ import eventSetup from './events';
 const todoItem = (title, description, dueDate, priority, completionStatus) => {
     let initialLoad = true;
    const priorityColor = () => {
-       console.log(priority);
         if(priority === "high"){
             return "2px solid red";
         }
@@ -18,25 +17,21 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
    
     const switchState = (checkBox) => {
         if(completionStatus === false) {
-            console.log("not completed");
             let img = document.createElement('img');
             img.src = svg;
             checkBox.appendChild(img);
             checkBox.style.border = "2px solid #26580F"
             completionStatus = true;
-            console.log("completion status:" + completionStatus);
             checkBox.parentNode.classList.add('crossout');
             checkBox.parentNode.style.borderLeft = "2px solid black";
         }
         else{
-            console.log("completed");
             checkBox.style.border = "2px solid red"
             if(checkBox.firstChild){
                 checkBox.firstChild.remove();
             }
             checkBox.parentNode.classList.remove('crossout');
             completionStatus = false;
-            console.log("completion status:" + completionStatus);
             checkBox.parentNode.style.borderLeft = priorityColor();
         }
     }
@@ -99,6 +94,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         deleteButton.textContent="X";
         deleteButton.style.opacity="100%";
         box.appendChild(deleteButton);
+        
         container.appendChild(box);
         return box;
     }
@@ -108,16 +104,24 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
 }
 
 const todoList = () => {
-    const itemArray = [];
-
+    let itemArray = [];
+    const array = () => {
+        console.log(itemArray);
+    }
     const addItem = (item) => {
         itemArray.push(item);
+        // console.log(itemArray);
+        // console.log(itemArray.indexOf(item));
         //Need to implement some sort of sorting of list items
         // restructure(itemArray);
     };
 
     const removeItem = (item) => {
-        itemArray.splice(itemArray.indexOf(item),1);
+        console.log(itemArray);
+        console.log(itemArray.indexOf(item));
+        itemArray = itemArray.splice(itemArray.indexOf(item),1);
+        clearDisplay();
+        loadList();
     };
 
     const loadList = () => {
@@ -136,7 +140,7 @@ const todoList = () => {
     };
     console.log('List created');
 
-    return {addItem,removeItem,loadList,clearDisplay};
+    return {addItem,removeItem,loadList,clearDisplay,array};
 }
 
 export {todoItem, todoList};
