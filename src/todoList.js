@@ -52,8 +52,8 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         checkBox.style.width = "20px";
         checkBox.style.height = "20px";
 
+
         box.appendChild(checkBox);
-        //BUG HERE: If another list is loaded, the box and box colors are not loaded
         if(completionStatus) {
             let img = document.createElement('img');
             img.src = svg;
@@ -84,7 +84,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         //As different text lengths change the alignment, maxWidth is not helping
         //By itself.
         text.style.maxWidth = "500px";
-        text.style.paddingRight = "350px";
+        // text.style.paddingRight = "350px";
         box.appendChild(text);
         text.parentNode.style.overflowX = "scroll";
         let date = document.createElement('div');
@@ -92,6 +92,13 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         date.textContent = dueDate;
         date.style.color = "#A288A6";
         box.appendChild(date);
+        //delete functionality button
+        let deleteButton = document.createElement('button');
+        deleteButton.type = "button";
+        deleteButton.id ='test';
+        deleteButton.textContent="X";
+        deleteButton.style.opacity="100%";
+        box.appendChild(deleteButton);
         container.appendChild(box);
         return box;
     }

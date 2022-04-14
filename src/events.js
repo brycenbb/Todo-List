@@ -81,6 +81,11 @@ let eventSetup = () => {
             }
         })
     });
+
+    //deleting list item functionality
+    document.getElementById('test').addEventListener('click', function() {
+        document.getElementById('test').parentNode;
+    })
 }
 
 export default eventSetup;
