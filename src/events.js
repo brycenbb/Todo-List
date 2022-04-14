@@ -97,7 +97,6 @@ let eventSetup = () => {
         for(let i=0; i<listItems.length;i++) {
             listItems[i].lastChild.addEventListener('click', function(){
                 console.log('deleting');
-                listArray[lastLoaded].array();
                 listArray[lastLoaded].removeItem(i);
             }); 
         }
