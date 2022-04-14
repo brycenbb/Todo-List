@@ -1,4 +1,5 @@
 import svg from './check.svg';
+import eventSetup from './events';
 
 const todoItem = (title, description, dueDate, priority, completionStatus) => {
     let initialLoad = true;
@@ -15,27 +16,28 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         }
    }
    
-   
     const switchState = (checkBox) => {
-        if(completionStatus) {
-            checkBox.classList.remove('unchecked');
+        if(completionStatus === false) {
+            console.log("not completed");
             let img = document.createElement('img');
             img.src = svg;
             checkBox.appendChild(img);
             checkBox.style.border = "2px solid #26580F"
-            completionStatus = false;
+            completionStatus = true;
+            console.log("completion status:" + completionStatus);
             checkBox.parentNode.classList.add('crossout');
             checkBox.parentNode.style.borderLeft = "2px solid black";
         }
-        else {
+        else{
+            console.log("completed");
             checkBox.style.border = "2px solid red"
             if(checkBox.firstChild){
                 checkBox.firstChild.remove();
             }
             checkBox.parentNode.classList.remove('crossout');
-            completionStatus = true;
+            completionStatus = false;
+            console.log("completion status:" + completionStatus);
             checkBox.parentNode.style.borderLeft = priorityColor();
-
         }
     }
 
@@ -51,11 +53,24 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
         checkBox.style.height = "20px";
 
         box.appendChild(checkBox);
-        //BUG HERE: If another list is loaded, the box and box colors are not loaded correctly
-        if(initialLoad) {
-            switchState(checkBox);
-            initialLoad = false;
+        //BUG HERE: If another list is loaded, the box and box colors are not loaded
+        if(completionStatus) {
+            let img = document.createElement('img');
+            img.src = svg;
+            checkBox.appendChild(img);
+            checkBox.style.border = "2px solid #26580F"
+            checkBox.parentNode.classList.add('crossout');
+            checkBox.parentNode.style.borderLeft = "2px solid black";
         }
+        else {
+            checkBox.style.border = "2px solid red"
+            if(checkBox.firstChild){
+                checkBox.firstChild.remove();
+            }
+            checkBox.parentNode.classList.remove('crossout');
+            checkBox.parentNode.style.borderLeft = priorityColor();
+        }
+    
 
         checkBox.addEventListener('click', function() {
             switchState(checkBox);
