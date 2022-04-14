@@ -92,15 +92,7 @@ let eventSetup = () => {
     //has todoItem objects. I need to get the todoItem object related to the overall div!
     //UPDATE2: cleardisplay and loadlist are called when an element is deleted but this
     //is only called once, upon page load. it needs to to be moved
-    function itemDeletion() {
-        let listItems = document.querySelectorAll('.listItem');
-        for(let i=0; i<listItems.length;i++) {
-            listItems[i].lastChild.addEventListener('click', function(){
-                console.log('deleting');
-                listArray[lastLoaded].removeItem(i);
-            }); 
-        }
-    }
+    //UPDATE3: FUNCTION moved inside todoList, can delete multiple elements but not new ones.
 
 }
 

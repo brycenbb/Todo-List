@@ -127,9 +127,12 @@ const todoList = () => {
     };
 
     const loadList = () => {
-        itemArray.forEach(element => {
-            element.display();
-        });
+        for(let i = 0; i < itemArray.length; i++){
+            let returnedBox = itemArray[i].display();
+            returnedBox.lastChild.addEventListener('click', function() {
+                removeItem(i);
+            });
+        }
     };
 
     const clearDisplay = () => {
