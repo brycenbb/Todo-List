@@ -190,3 +190,8 @@ img {
     flex: 1;
     text-align: end;
 }
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+}
