@@ -1,92 +1,101 @@
-import {todoList,todoItem} from "./todoList";
+import { todoList, todoItem } from './todoList';
 
 let eventSetup = () => {
-    function formSubmitted() {
-        let inputs = document.getElementById("form").elements;
-        let month = Number(inputs[2].value.slice(5,7) - 1);
-        let day = inputs[2].value.slice(8);
-        let months = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-            ];
-        let convertedDate = months[month].slice(0,3) + " " + day;
-        let item = todoItem(inputs[0].value,inputs[1].value,convertedDate,document.querySelector('input[name="prio"]:checked').value, false);
-        listArray[lastLoaded].addItem(item);
-        // item.display();
-    };
+  function formSubmitted() {
+    let inputs = document.getElementById('form').elements;
+    let month = Number(inputs[2].value.slice(5, 7) - 1);
+    let day = inputs[2].value.slice(8);
 
-    let lastLoaded = null;
-    const listArray = [];
-    let testList = todoList();
-    listArray.push(testList);
-    let test = todoItem("This is a test item", "not implemented yet","Dec 12","high",false);
-    testList.addItem(test);
-    let test2 = todoItem("This is also a test item", "not implemented yet","Dec 12","medium",true);
-    testList.addItem(test2);
-    // listArray[0].loadList();
-    lastLoaded = 0;
- 
-    document.getElementById('0').addEventListener('click',function() {
-        if(lastLoaded != Number('0')){
-            listArray[Number('0')].clearDisplay();
-            listArray[Number('0')].loadList();
-            lastLoaded = Number('0');
-            console.log('default list loaded');
-        }
+    let months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    let convertedDate = months[month].slice(0, 3) + ' ' + day;
+    let item = todoItem(
+      inputs[0].value,
+      inputs[1].value,
+      convertedDate,
+      document.querySelector('input[name="prio"]:checked').value,
+      false
+    );
+    listArray[lastLoaded].addItem(item);
+    // item.display();
+  }
+
+  let lastLoaded = null;
+  const listArray = [];
+  let testList = todoList();
+  listArray.push(testList);
+  let test = todoItem(
+    'This is a test item',
+    'not implemented yet',
+    'Dec 12',
+    'high',
+    false
+  );
+  testList.addItem(test);
+  let test2 = todoItem(
+    'This is also a test item',
+    'not implemented yet',
+    'Dec 12',
+    'medium',
+    true
+  );
+  testList.addItem(test2);
+  // listArray[0].loadList();
+  lastLoaded = 0;
+
+  document.getElementById('0').addEventListener('click', function () {
+    if (lastLoaded != Number('0')) {
+      listArray[Number('0')].clearDisplay();
+      listArray[Number('0')].loadList();
+      lastLoaded = Number('0');
+      console.log('default list loaded');
+    }
+  });
+
+  //New item functionality. Creates a todoItem and adds it to the current project. Uses modal
+  document
+    .querySelector('.newListItemButton')
+    .addEventListener('click', function () {
+      document.getElementById('form').classList.add('clicked');
     });
 
+  //Form submission default action override
+  document.getElementById('form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    document.querySelector('.newItemForm').classList.remove('clicked');
+    formSubmitted();
+  });
 
-    //New item functionality. Creates a todoItem and adds it to the current project. Uses modal
-    document.querySelector('.newListItemButton').addEventListener('click', function() {
-        document.getElementById('form').classList.add('clicked');
-    });
-
-    //Form submission default action override
-    document.getElementById('form').addEventListener('submit', function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        document.querySelector('.newItemForm').classList.remove('clicked');
-        formSubmitted();
-    });
-
-    //New List functionality. Creates a div with a name, adds it to listArray, makes a new todoList
-    document.getElementById('newList').addEventListener('click', function() {
-        let newList = document.createElement('div');
-        newList.id = listArray.length;
-        newList.textContent = window.prompt('Please give this new list a name:');
-        document.getElementById('projects').appendChild(newList);
-        let listToAdd = todoList();
-        listArray.push(listToAdd);
+  //New List functionality. Creates a div with a name, adds it to listArray, makes a new todoList
+  document.getElementById('newList').addEventListener('click', function () {
+    let newList = document.createElement('div');
+    newList.id = listArray.length;
+    newList.textContent = window.prompt('Please give this new list a name:');
+    document.getElementById('projects').appendChild(newList);
+    let listToAdd = todoList();
+    listArray.push(listToAdd);
+    listArray[listArray.length - 1].loadList();
+    newList.addEventListener('click', function () {
+      if (lastLoaded != newList.id) {
+        listArray[listArray.length - 1].clearDisplay();
         listArray[listArray.length - 1].loadList();
-        newList.addEventListener('click', function() {
-            if(lastLoaded != newList.id){
-                listArray[listArray.length - 1].clearDisplay();
-                listArray[listArray.length - 1].loadList();
-                lastLoaded = newList.id;
-            }
-        })
+        lastLoaded = newList.id;
+      }
     });
-
-    //Bug here: .array() is a function that just consolelogs the todoList to see its items.
-    //The problem is that somehwere between the foreach loop and the event listener one of 
-    //the objects is lost in memory. This can be tested by clicking the delete button.
-    //UPDATE: the issue is that i am passing in the div object to the array, when the array
-    //has todoItem objects. I need to get the todoItem object related to the overall div!
-    //UPDATE2: cleardisplay and loadlist are called when an element is deleted but this
-    //is only called once, upon page load. it needs to to be moved
-    //UPDATE3: FUNCTION moved inside todoList, can delete multiple elements but not new ones.
-    //not until the list is loaded entirely, then it can be.
-
-}
+  });
+};
 
 export default eventSetup;

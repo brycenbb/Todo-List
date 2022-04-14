@@ -1,4 +1,3 @@
-import home from "./homepage";
+import home from './homepage';
 
-home(); 
-
+home();

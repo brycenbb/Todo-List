@@ -41,7 +41,6 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
     checkBox.style.width = '20px';
     checkBox.style.height = '20px';
 
-
     box.appendChild(checkBox);
     if (completionStatus) {
       const img = document.createElement('img');
@@ -59,15 +58,13 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
       checkBox.parentNode.style.borderLeft = priorityColor();
     }
 
-
-    checkBox.addEventListener('click', function() {
+    checkBox.addEventListener('click', function () {
       switchState(checkBox);
     });
     checkBox.style.cursor = 'pointer';
 
     const text = document.createElement('div');
     text.textContent = title;
-
 
     text.style.maxWidth = '500px';
     // text.style.paddingRight = "350px";
@@ -82,8 +79,8 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
     const deleteButton = document.createElement('button');
     deleteButton.type = 'button';
     deleteButton.classList.add('test');
-    deleteButton.textContent='X';
-    deleteButton.style.opacity='100%';
+    deleteButton.textContent = 'X';
+    deleteButton.style.opacity = '100%';
     box.appendChild(deleteButton);
 
     container.appendChild(box);
@@ -91,7 +88,7 @@ const todoItem = (title, description, dueDate, priority, completionStatus) => {
   };
   console.log('Item created');
 
-  return {display};
+  return { display };
 };
 
 const todoList = () => {
@@ -125,7 +122,7 @@ const todoList = () => {
   const loadList = () => {
     for (let i = 0; i < itemArray.length; i++) {
       const returnedBox = itemArray[i].display();
-      returnedBox.lastChild.addEventListener('click', function() {
+      returnedBox.lastChild.addEventListener('click', function () {
         removeItem(i);
       });
     }
@@ -141,9 +138,9 @@ const todoList = () => {
   };
   console.log('List created');
 
-  return {addItem, removeItem, loadList, clearDisplay, array};
+  return { addItem, removeItem, loadList, clearDisplay, array };
 };
 
-export {todoItem, todoList};
+export { todoItem, todoList };
 // export function todoList();
 // export function todoItem();
