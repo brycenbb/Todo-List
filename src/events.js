@@ -22,7 +22,7 @@ let eventSetup = () => {
         let convertedDate = months[month].slice(0,3) + " " + day;
         let item = todoItem(inputs[0].value,inputs[1].value,convertedDate,document.querySelector('input[name="prio"]:checked').value, false);
         listArray[lastLoaded].addItem(item);
-        item.display();
+        // item.display();
     };
 
     let lastLoaded = null;
@@ -33,7 +33,7 @@ let eventSetup = () => {
     testList.addItem(test);
     let test2 = todoItem("This is also a test item", "not implemented yet","Dec 12","medium",true);
     testList.addItem(test2);
-    listArray[0].loadList();
+    // listArray[0].loadList();
     lastLoaded = 0;
  
     document.getElementById('0').addEventListener('click',function() {
@@ -77,14 +77,6 @@ let eventSetup = () => {
         })
     });
 
-    //deleting list item functionality. Should do :lastchild instead of ID, using ID
-    //makes it only apply to one item
-    // document.getElementById('test').addEventListener('click', function() {
-    //     console.log('deleting....');
-    //     console.log(listArray[lastLoaded]);
-    //     listArray[lastLoaded].removeItem(document.getElementById('test').parentNode);
-    // });
-
     //Bug here: .array() is a function that just consolelogs the todoList to see its items.
     //The problem is that somehwere between the foreach loop and the event listener one of 
     //the objects is lost in memory. This can be tested by clicking the delete button.
@@ -93,6 +85,7 @@ let eventSetup = () => {
     //UPDATE2: cleardisplay and loadlist are called when an element is deleted but this
     //is only called once, upon page load. it needs to to be moved
     //UPDATE3: FUNCTION moved inside todoList, can delete multiple elements but not new ones.
+    //not until the list is loaded entirely, then it can be.
 
 }
 

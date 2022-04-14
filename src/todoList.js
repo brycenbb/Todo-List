@@ -107,6 +107,8 @@ const todoList = () => {
     }
     const addItem = (item) => {
         itemArray.push(item);
+        clearDisplay();
+        loadList();
         // console.log(itemArray);
         // console.log(itemArray.indexOf(item));
         //Need to implement some sort of sorting of list items
