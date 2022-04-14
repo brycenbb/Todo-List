@@ -90,31 +90,19 @@ let eventSetup = () => {
     //the objects is lost in memory. This can be tested by clicking the delete button.
     //UPDATE: the issue is that i am passing in the div object to the array, when the array
     //has todoItem objects. I need to get the todoItem object related to the overall div!
-    let listItems = document.querySelectorAll('.listItem');
-    for(let i=0; i<listItems.length;i++) {
-        console.log('loading');
-        // console.log(listItems[i]);
-        // console.log(listArray[lastLoaded]);
-        // listArray[lastLoaded].array();
-        // console.log(element.lastChild);
-        // console.log(element);
-        listItems[i].lastChild.addEventListener('click', function(){
-            console.log('deleting');
-            listArray[lastLoaded].array();
-            listArray[lastLoaded].removeItem(i);
-        }); 
+    //UPDATE2: cleardisplay and loadlist are called when an element is deleted but this
+    //is only called once, upon page load. it needs to to be moved
+    function itemDeletion() {
+        let listItems = document.querySelectorAll('.listItem');
+        for(let i=0; i<listItems.length;i++) {
+            listItems[i].lastChild.addEventListener('click', function(){
+                console.log('deleting');
+                listArray[lastLoaded].array();
+                listArray[lastLoaded].removeItem(i);
+            }); 
+        }
     }
-    // listItems.forEach(element => {
-    //     console.log('loading');
-    //     listArray[lastLoaded].array();
-    //     // console.log(element.lastChild);
-    //     // console.log(element);
-    //     element.lastChild.addEventListener('click', function(){
-    //         console.log('deleting');
-    //         listArray[lastLoaded].array();
-    //         listArray[lastLoaded].removeItem(element.lastChild.parentNode);
-    //     });
-    // });
+
 }
 
 export default eventSetup;
